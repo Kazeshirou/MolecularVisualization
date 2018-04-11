@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# Qt
+*.pro.user
+Makefile*
+*qmake*
+*Debug
+*Release
+moc_*
