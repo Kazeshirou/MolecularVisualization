@@ -1,0 +1,43 @@
+class Camera
+!!!132738.cpp!!!	Camera()
+
+    m_globalTransform.setToIdentity();
+!!!132866.cpp!!!	draw(inout c : BaseContext) : void
+
+    c->setViewMatrix(m_viewMatrix);
+!!!132994.cpp!!!	rotate(in r : QQuaternion) : void
+
+    m_rotate = r * m_rotate;
+    m_viewMatrix.setToIdentity();
+    m_viewMatrix.translate(m_translate);
+    m_viewMatrix.rotate(m_rotate);
+    m_viewMatrix.scale(m_scale);
+    m_viewMatrix = m_viewMatrix * m_globalTransform.inverted();
+
+!!!133122.cpp!!!	translate(in t : QVector3D) : void
+
+    m_translate += t;
+    m_viewMatrix.setToIdentity();
+    m_viewMatrix.translate(m_translate);
+    m_viewMatrix.rotate(m_rotate);
+    m_viewMatrix.scale(m_scale);
+    m_viewMatrix = m_viewMatrix * m_globalTransform.inverted();
+
+!!!133250.cpp!!!	scale(in s : QVector3D) : void
+
+    m_scale *= s;
+    m_viewMatrix.setToIdentity();
+    m_viewMatrix.translate(m_translate);
+    m_viewMatrix.rotate(m_rotate);
+    m_viewMatrix.scale(m_scale);
+    m_viewMatrix = m_viewMatrix * m_globalTransform.inverted();
+
+!!!133378.cpp!!!	setGlobalTransform(in g : QMatrix4x4) : void
+
+    m_globalTransform = g;
+    m_viewMatrix.setToIdentity();
+    m_viewMatrix.translate(m_translate);
+    m_viewMatrix.rotate(m_rotate);
+    m_viewMatrix.scale(m_scale);
+    m_viewMatrix = m_viewMatrix * m_globalTransform.inverted();
+

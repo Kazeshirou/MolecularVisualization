@@ -1,0 +1,15 @@
+class ViewShader
+!!!151554.cpp!!!	ViewShader(inout parent : QWidget = nullptr)
+
+    setWindowTitle(QString("Со специальным шейдером сфер"));
+!!!151810.cpp!!!	resizeGL(in w : int, in h : int) : void
+
+    m_context.resize(w, h);
+!!!151938.cpp!!!	paintGL() : void
+
+    m_context.setFunctions(context()->functions());
+    m_context.clear();
+    m_context.activate();
+    m_camera->draw(&m_context);
+    for (int i = 0; i < m_objects.size(); i++)
+        m_objects[i]->draw(&m_context);

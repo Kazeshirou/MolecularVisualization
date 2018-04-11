@@ -1,0 +1,23 @@
+window_sizes 1920 1001 450 1464 943 0
+
+diagrams
+  classdiagram_ref 128130 // moleculevisualization
+    1075 572 100 A3-Landscape 117 239
+  classdiagram_ref 128258 // mol
+    114 98 100 A4-Landscape 0 0
+  active  classdiagram_ref 128386 // view
+    1464 943 100 A3-Landscape 44 0
+end
+show_stereotypes
+selected classdiagram_ref 128386 // view
+open
+  class_ref 128130 // Atom
+  class_ref 129154 // Transformational
+  deploymentview_ref 128130 // molecularvisualization
+  class_ref 130690 // Dialog
+  
+  package_ref 128386 // debug
+  
+  package_ref 128514 // release
+end
+end

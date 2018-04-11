@@ -1,0 +1,22 @@
+class Bond
+!!!131970.cpp!!!	Bond(in i1 : int, in i2 : int, inout a1 : Atom, inout a2 : Atom)
+
+    m_atomIndexes[0] = i1;
+    m_atomIndexes[1] = i2;
+    m_atoms[0] = a1;
+    m_atoms[1] = a2;
+!!!132354.cpp!!!	setAtom(in a : int, inout atom : Atom) : void
+
+    if (a){
+        m_atoms[1] = atom;
+        m_position1 = atom->getPosition();
+    }
+    else{
+        m_atoms[0] = atom;
+        m_position = atom->getPosition();
+    }
+!!!132610.cpp!!!	draw(inout c : BaseContext) : void
+
+    m_position = m_atoms[0]->getPosition();
+    m_position1 = m_atoms[1]->getPosition();
+    Cilinder::draw(c);

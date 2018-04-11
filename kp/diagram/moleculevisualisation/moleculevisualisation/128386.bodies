@@ -1,0 +1,9 @@
+class BaseContext
+!!!129154.cpp!!!	BaseContext(in width : int, in height : int)
+
+    float aspect = m_width/ (m_height ? (float)m_height : 1.);
+    m_projectionMatrix.setToIdentity();
+    m_projectionMatrix.perspective(45, aspect, n, f);
+    m_viewPortMatrix.setToIdentity();
+    m_viewPortMatrix.translate(QVector3D(m_width/2.,m_height/2.,(f-n)/2.));
+    m_viewPortMatrix.scale(m_width/2.,m_height/2.,(f-n)/2.);

@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/shader">
+        <file>frag.fsh</file>
+        <file>vert.vsh</file>
+        <file>spherefrag.fsh</file>
+        <file>spherevert.vsh</file>
+    </qresource>
+    <qresource prefix="/obj">
+        <file>cilinder.obj</file>
+        <file>sphere.obj</file>
+    </qresource>
+</RCC>

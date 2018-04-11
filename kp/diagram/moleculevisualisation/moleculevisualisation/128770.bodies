@@ -1,0 +1,10 @@
+class BaseView
+!!!130818.cpp!!!	BaseView(inout parent : QWidget = nullptr)
+
+    m_camera->translate(QVector3D(0.0,0.0,-100.0));
+    m_timer.start(40, this);
+!!!131074.cpp!!!	setMolecule(inout m : Molecule) : void
+
+    m_objects.clear();
+    m_objects.append(m);
+    update();

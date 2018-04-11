@@ -1,0 +1,111 @@
+format 215
+"debug" // molecularvisualization::debug
+  revision 1
+  modified_by 2 "zhar9"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  cpp_h_dir "C:/temp/kp/molecularvisualization/debug/"
+  cpp_src_dir "C:/temp/kp/molecularvisualization/debug/"
+  classview 128386 "debug"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 131842 "initializer"
+      visibility package stereotype "struct"
+      cpp_decl "${comment}${template}struct ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 152066 "initializer"
+	cpp_inline public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw}${abstract} { QT_RCC_MANGLE_NAMESPACE(qInitResources_resource)(); };
+"
+	
+	
+	
+	
+      end
+
+      operation 152194 "~initializer"
+	cpp_inline public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw}${abstract} { QT_RCC_MANGLE_NAMESPACE(qCleanupResources_resource)(); };
+"
+	
+	
+	
+	
+      end
+    end
+  end
+
+  deploymentview 128386 "debug"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 130818 "initializer"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_elems
+	class_ref 131842 // initializer
+      end
+    end
+  end
+end

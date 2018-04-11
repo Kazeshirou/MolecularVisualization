@@ -1,0 +1,184 @@
+class Dialog
+!!!140674.cpp!!!	Dialog(inout parent : QWidget = 0)
+
+    ui->setupUi(this);
+    connect(ui->atomColor, SIGNAL(changedColor(QColor)), this, SLOT(atomColorChanged(QColor)));
+    connect(ui->bondColor, SIGNAL(changedColor(QColor)), this, SLOT(bondColorChanged(QColor)));
+!!!140802.cpp!!!	~Dialog()
+
+    delete ui;
+!!!140930.cpp!!!	setMolecule(inout m : Molecule) : void
+
+    m_molecule = m;
+    ui->atomNumber->setMaximum(m_molecule->getAtomNumber());
+    ui->bondNumber->setMaximum(m_molecule->getBondNmber());
+    on_atomNumber_valueChanged(0);
+    on_bondNumber_valueChanged(0);
+!!!141058.cpp!!!	moleculeChange() : void
+
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
+!!!141186.cpp!!!	on_atomNumber_valueChanged(in arg1 : int) : void
+
+    if (arg1 < m_molecule->getAtomNumber()){
+        Atom *a = m_molecule->getAtom(arg1);
+        ui->atomColor->setColor(a->getColor());
+        ui->atomElement->setText(a->getElement());
+        ui->atomRadii->setValue(a->getRadii());
+        QVector3D p = a->getPosition();
+        ui->atomX->setValue(p.x());
+        ui->atomY->setValue(p.y());
+        ui->atomZ->setValue(p.z());
+    }
+!!!141314.cpp!!!	on_bondNumber_valueChanged(in arg1 : int) : void
+
+    if (arg1 < m_molecule->getBondNmber()){
+        Bond *b = m_molecule->getBond(arg1);
+        ui->bondColor->setColor(b->getColor());
+        ui->bondRadii->setValue(b->getRadii());
+        ui->bondAtom1->setValue(b->getAtomIndex(0));
+        ui->bondAtom2->setValue(b->getAtomIndex(1));
+    }
+!!!141442.cpp!!!	on_okButton_clicked() : void
+
+    if (!ui->tabWidget->currentIndex()){
+        if ((ui->atomNumber->value() == m_molecule->getAtomNumber()) && ui->atomElement->text().length()){
+            Atom *a = new Atom(ui->atomElement->text(), QVector3D(ui->atomX->value(), ui->atomY->value(), ui->atomZ->value()));
+            m_molecule->addAtom(a);
+            a->setRadii(ui->atomRadii->value());
+            a->setColor(ui->atomColor->color());
+            ui->atomNumber->setMaximum(m_molecule->getAtomNumber());
+        }
+    }
+    else{
+        int k = m_molecule->getAtomNumber();
+        if (ui->bondNumber->value() == m_molecule->getBondNmber()){
+            int a1 = ui->bondAtom1->value(), a2 = ui->bondAtom2->value();
+            if ((a1 != a2) && (a1 < k) && (a2 < k)){
+                Bond *b = new Bond(a1, a2, m_molecule->getAtom(a1), m_molecule->getAtom(a2));
+                m_molecule->addBond(b);
+                ui->bondNumber->setMaximum(m_molecule->getBondNmber());
+            }
+        }
+    }
+
+    emit moleculeChange();
+!!!141570.cpp!!!	on_deleteButton_clicked() : void
+
+    if (!ui->tabWidget->currentIndex()){
+        int k = ui->atomNumber->value();
+        if (k < m_molecule->getAtomNumber()){
+            m_molecule->deleteAtom(ui->atomNumber->value());
+            ui->atomNumber->setMaximum(m_molecule->getAtomNumber());
+        }
+        for (int i = 0; i < m_molecule->getBondNmber(); i++){
+            Bond *b = m_molecule->getBond(i);
+            if ((b->getAtomIndex(0) == k) || (b->getAtomIndex(1) == k))
+                m_molecule->deleteBond(i--);
+        }
+    }
+    else
+        if (ui->bondNumber->value() < m_molecule->getBondNmber()){
+            m_molecule->deleteBond(ui->bondNumber->value());
+            ui->bondNumber->setMaximum(m_molecule->getBondNmber());
+        }
+
+    emit moleculeChange();
+!!!141698.cpp!!!	on_atomElement_textChanged(in arg1 : QString) : void
+
+    int i = ui->atomNumber->value();
+    if (arg1.length() && (i < m_molecule->getAtomNumber())){
+        Atom *a = m_molecule->getAtom(i);
+        a->setElement(arg1);
+    }
+!!!141826.cpp!!!	on_atomRadii_valueChanged(in arg1 : double) : void
+
+    int i = ui->atomNumber->value();
+    if (i < m_molecule->getAtomNumber()){
+        Atom *a = m_molecule->getAtom(i);
+        a->setRadii(arg1);
+    }
+
+    emit moleculeChange();
+!!!141954.cpp!!!	on_atomX_valueChanged(in arg1 : double) : void
+
+    int i = ui->atomNumber->value();
+    if (i < m_molecule->getAtomNumber()){
+        Atom *a = m_molecule->getAtom(i);
+        QVector3D p = a->getPosition();
+        p.setX(arg1);
+        a->setPosition(p);
+    }
+
+    emit moleculeChange();
+!!!142082.cpp!!!	on_atomY_valueChanged(in arg1 : double) : void
+
+    int i = ui->atomNumber->value();
+    if (i < m_molecule->getAtomNumber()){
+        Atom *a = m_molecule->getAtom(i);
+        QVector3D p = a->getPosition();
+        p.setY(arg1);
+        a->setPosition(p);
+    }
+
+    emit moleculeChange();
+!!!142210.cpp!!!	on_atomZ_valueChanged(in arg1 : double) : void
+
+    int i = ui->atomNumber->value();
+    if (i < m_molecule->getAtomNumber()){
+        Atom *a = m_molecule->getAtom(i);
+        QVector3D p = a->getPosition();
+        p.setZ(arg1);
+        a->setPosition(p);
+    }
+
+    emit moleculeChange();
+!!!142338.cpp!!!	atomColorChanged(in arg1 : QColor) : void
+
+    int i = ui->atomNumber->value();
+    if (i < m_molecule->getAtomNumber()){
+        Atom *a = m_molecule->getAtom(i);
+        a->setColor(arg1);
+    }
+
+    emit moleculeChange();
+!!!142466.cpp!!!	bondColorChanged(in arg1 : QColor) : void
+
+    int i = ui->bondNumber->value();
+    if (i < m_molecule->getBondNmber()){
+        Bond::setColor(arg1);
+    }
+
+    emit moleculeChange();
+!!!142594.cpp!!!	on_bondAtom1_valueChanged(in arg1 : int) : void
+
+    int i = ui->bondNumber->value();
+    if (i < m_molecule->getBondNmber()){
+        if (arg1 < m_molecule->getAtomNumber()){
+            Bond *b = m_molecule->getBond(i);
+            b->setAtomIndex(0, arg1);
+            b->setAtom(0, m_molecule->getAtom(arg1));
+        }
+    }
+
+    emit moleculeChange();
+!!!142722.cpp!!!	on_bondAtom2_valueChanged(in arg1 : int) : void
+
+    int i = ui->bondNumber->value();
+    if (i < m_molecule->getBondNmber()){
+        if (arg1 < m_molecule->getAtomNumber()){
+            Bond *b = m_molecule->getBond(i);
+            b->setAtomIndex(1, arg1);
+            b->setAtom(1, m_molecule->getAtom(arg1));
+        }
+
+    }
+
+    emit moleculeChange();
+!!!142850.cpp!!!	on_bondRadii_valueChanged(in arg1 : double) : void
+
+    int i = ui->bondNumber->value();
+    if (i < m_molecule->getBondNmber()){
+        Bond::setRadii(arg1);
+    }
+
+    emit moleculeChange();

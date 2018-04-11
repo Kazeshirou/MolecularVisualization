@@ -1,0 +1,25 @@
+class colorButton
+!!!135554.cpp!!!	paintEvent(inout  : QPaintEvent) : void
+
+    QPainter painter(this);
+    painter.setBrush(QBrush(currentColor));
+    painter.drawRect(QRect(QPoint(0,0),
+                               QPoint(this->width(),this->height())));
+!!!135682.cpp!!!	mousePressEvent(inout  : QMouseEvent) : void
+
+    currentColor = QColorDialog::getColor();
+    emit changedColor(currentColor);
+!!!135810.cpp!!!	changedColor(in _t1 : QColor) : void
+
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
+!!!135938.cpp!!!	colorButton(inout parent : QWidget = 0)
+
+    currentColor = Qt::white;
+!!!136066.cpp!!!	color() : QColor
+
+    return currentColor;
+!!!136194.cpp!!!	setColor(in color : QColor) : void
+
+    currentColor = color;
+    update();

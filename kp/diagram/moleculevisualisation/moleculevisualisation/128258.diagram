@@ -1,0 +1,30 @@
+format 215
+
+classcanvas 128002 class_ref 129282 // Molecule
+  classdiagramsettings member_max_width 0 end
+  xyz 120 224 2000
+end
+classcanvas 128130 class_ref 128130 // Atom
+  classdiagramsettings member_max_width 0 end
+  xyz 549 212 2006
+end
+classcanvas 128386 class_ref 129410 // Bond
+  classdiagramsettings member_max_width 0 end
+  xyz 534 547 2012
+end
+relationcanvas 128258 relation_ref 131330 // <unidirectional association>
+  from ref 128002 z 2007 stereotype "<<QVector>>" xyz 360 370 2007 to ref 128130
+  role_a_pos 502 297 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128514 relation_ref 129026 // <unidirectional association>
+  from ref 128386 z 2013 to ref 128130
+  role_a_pos 599 410 3000 no_role_b
+  multiplicity_a_pos 564 410 3000 no_multiplicity_b
+end
+relationcanvas 128642 relation_ref 131458 // <unidirectional association>
+  from ref 128002 z 2013 stereotype "<<QVector>>" xyz 352.5 536.5 2013 to ref 128386
+  role_a_pos 488 583 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

@@ -5,7 +5,7 @@
 *.slo
 *.lo
 *.o
-*.obj
+*.obj !cilinder.obj !sphere.obj 
 
 # Precompiled Headers
 *.gch

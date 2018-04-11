@@ -1,0 +1,171 @@
+format 215
+"Ui" // molecularvisualization::Ui
+  revision 1
+  modified_by 2 "zhar9"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  cpp_h_dir "C:\\temp\\kp\\molecularvisualization/"
+  cpp_src_dir "C:\\temp\\kp\\molecularvisualization/"
+  cpp_namespace "Ui"
+  classview 128258 "molecularvisualization"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 130690 "Dialog"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 131842 // <generalisation>
+	relation 131842 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131842 // <generalisation>
+	  b parent class_ref 131458 // typedef5
+      end
+    end
+
+    class 131330 "MainWindow"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 131970 // <generalisation>
+	relation 131970 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131970 // <generalisation>
+	  b parent class_ref 131586 // typedef6
+      end
+    end
+
+    class 131458 "typedef5"
+      visibility package stereotype "typedef" explicit_base_type "Ui_Dialog"
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 131586 "typedef6"
+      visibility package stereotype "typedef" explicit_base_type "Ui_MainWindow"
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+  end
+
+  deploymentview 128258 "Ui"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 130050 "ui_dialog"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_elems
+	class_ref 131458 // typedef5
+	class_ref 130690 // Dialog
+      end
+    end
+
+    artifact 130178 "ui_mainwindow"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_elems
+	class_ref 131586 // typedef6
+	class_ref 131330 // MainWindow
+      end
+    end
+  end
+end

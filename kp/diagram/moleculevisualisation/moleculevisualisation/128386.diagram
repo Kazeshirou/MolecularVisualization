@@ -1,0 +1,125 @@
+format 215
+
+classcanvas 128002 class_ref 129538 // Cilinder
+  classdiagramsettings member_max_width 0 end
+  xyz 1210 498 2012
+end
+classcanvas 128130 class_ref 128770 // BaseView
+  classdiagramsettings member_max_width 0 end
+  xyz 632.6 369 2000
+end
+classcanvas 128258 class_ref 130050 // Context
+  classdiagramsettings member_max_width 0 end
+  xyz 276.8 59.5 2006
+end
+classcanvas 128386 class_ref 130178 // ContextGL
+  classdiagramsettings member_max_width 0 end
+  xyz 283.5 643 2006
+end
+classcanvas 128514 class_ref 129026 // Camera
+  classdiagramsettings member_max_width 0 end
+  xyz 792 122 2012
+end
+classcanvas 128642 class_ref 131074 // ViewGL
+  classdiagramsettings member_max_width 0 end
+  xyz 486.7 709.8 2000
+end
+classcanvas 128770 class_ref 130306 // ContextShader
+  classdiagramsettings member_max_width 0 end
+  xyz 274.1 381.8 2012
+end
+classcanvas 128898 class_ref 128386 // BaseContext
+  classdiagramsettings member_max_width 0 end
+  xyz 66.6 223.7 2000
+end
+classcanvas 129282 class_ref 131714 // View
+  classdiagramsettings member_max_width 0 end
+  xyz 485.1 145 2012
+end
+classcanvas 129410 class_ref 131202 // ViewShader
+  classdiagramsettings member_max_width 0 end
+  xyz 474.5 449.2 2018
+end
+classcanvas 129538 class_ref 128258 // Sphere
+  classdiagramsettings member_max_width 0 end
+  xyz 1058 118 3005
+end
+classcanvas 129666 class_ref 129154 // Transformational
+  classdiagramsettings member_max_width 0 end
+  xyz 863 412 2006
+end
+relationcanvas 129794 relation_ref 132738 // <directional composition>
+  from ref 129410 z 2019 to ref 128770
+  role_a_pos 390 481 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129922 relation_ref 129922 // <generalisation>
+  from ref 128770 z 2013 to ref 128898
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130050 relation_ref 132354 // <generalisation>
+  from ref 128642 z 2001 to ref 128130
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130178 relation_ref 128642 // <unidirectional association>
+  from ref 128130 z 2013 to ref 128514
+  role_a_pos 779 387 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130306 relation_ref 132226 // <directional composition>
+  from ref 129282 z 2013 to ref 128258
+  role_a_pos 410 186 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130434 relation_ref 129794 // <generalisation>
+  from ref 128386 z 2007 to ref 128898
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130562 relation_ref 129154 // <generalisation>
+  decenter_end 148
+  from ref 128514 z 2013 to ref 129666
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130818 relation_ref 132098 // <generalisation>
+  from ref 129282 z 2013 to ref 128130
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131074 relation_ref 129282 // <generalisation>
+  decenter_begin 495
+  decenter_end 933
+  from ref 128002 z 2013 to ref 129666
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131330 relation_ref 132610 // <generalisation>
+  from ref 129410 z 2019 to ref 128130
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131458 relation_ref 128770 // <unidirectional association>
+  from ref 128130 z 2007 stereotype "<<QVector>>" xyz 768.5 494.5 2007 to ref 129666
+  role_a_pos 792 472 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131586 relation_ref 132482 // <directional composition>
+  from ref 128642 z 2007 to point 477 760
+  line 131714 z 2007 to ref 128386
+  role_a_pos 387 748 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131842 relation_ref 129666 // <generalisation>
+  from ref 128258 z 2007 to ref 128898
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131970 relation_ref 131586 // <generalisation>
+  from ref 129538 z 3006 to ref 129666
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

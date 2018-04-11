@@ -1,0 +1,72 @@
+class ContextGL
+!!!137986.cpp!!!	ContextGL(in width : int, in height : int)
+
+    type = OpenGl;
+!!!138114.cpp!!!	ContextGL(in width : int, in height : int, inout functions : QOpenGLFunctions)
+
+    type = OpenGl;
+    functions->glClearColor(m_color.red()/255.,m_color.green()/255.,m_color.blue()/255.,1);
+    functions->glEnable(GL_DEPTH_TEST);
+    functions->glEnable(GL_CULL_FACE);
+    initShaders();
+!!!138242.cpp!!!	ContextGL(in size : QSize, inout functions : QOpenGLFunctions)
+
+    type = OpenGl;
+    functions->glClearColor(m_color.red()/255.,m_color.green()/255.,m_color.blue()/255.,1);
+    functions->glEnable(GL_DEPTH_TEST);
+    functions->glEnable(GL_CULL_FACE);
+    functions->glEnable(GL_SMOOTH);
+    initShaders();
+!!!138370.cpp!!!	clear() : void
+
+    m_functions->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+!!!138498.cpp!!!	resize(in width : int, in height : int) : void
+
+    if ((width == m_width) && (height == m_height))
+        return;
+    m_width = width;
+    m_height = height;
+    float aspect = m_width/ (m_height ? (float)m_height : 1.);
+    m_projectionMatrix.setToIdentity();
+    m_projectionMatrix.perspective(45, aspect, n,f );
+    m_viewPortMatrix.setToIdentity();
+    m_viewPortMatrix.translate(QVector3D(m_width/2.,m_height/2.,(f-n)/2.));
+    m_viewPortMatrix.scale(m_width/2.,m_height/2.,(f-n)/2.);
+!!!138626.cpp!!!	resize(in s : QSize) : void
+
+    int width = s.width();
+    int height = s.height();
+    if ((width == m_width) && (height == m_height))
+        return;
+    float aspect = m_width/ (m_height ? (float)m_height : 1.);
+    m_projectionMatrix.setToIdentity();
+    m_projectionMatrix.perspective(45, aspect, n,f );
+    m_viewPortMatrix.setToIdentity();
+    m_viewPortMatrix.translate(QVector3D(m_width/2.,m_height/2.,(f-n)/2.));
+    m_viewPortMatrix.scale(m_width/2.,m_height/2.,(f-n)/2.);
+!!!138754.cpp!!!	activate() : void
+
+    clear();
+    m_program.bind();
+    m_program.setUniformValue("u_projectionMatrix", m_projectionMatrix);
+    m_program.setUniformValue("u_lightPosition", QVector4D(0.0, 0.0, 0.0, 0.1));
+    m_program.setUniformValue("u_lightPower", 1.0f);
+    m_program.setUniformValue("u_viewMatrix", m_viewMatrix);
+!!!139138.cpp!!!	setFunctions(inout f : QOpenGLFunctions) : void
+
+    m_functions = f;
+    m_functions->glClearColor(m_color.red()/255.,m_color.green()/255.,m_color.blue()/255.,1);
+    m_functions->glEnable(GL_DEPTH_TEST);
+    m_functions->glEnable(GL_CULL_FACE);
+    initShaders();
+!!!139266.cpp!!!	initShaders() : void
+
+    if (m_program.isLinked())
+        return;
+    if (!m_program.addCacheableShaderFromSourceFile(QOpenGLShader::Vertex,":/shader/vert.vsh"))
+        return;
+    if (!m_program.addCacheableShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/frag.fsh"))
+        return;
+    // link связывает наши шейдеры в один и протягивает сквозь них переменные  varying
+    if (!m_program.link())
+        return;
